@@ -38,7 +38,7 @@ locals {
 ######################################################
 
 module "eks_blueprints_kubernetes_addons" {
-  source = "github.com/aws-ia/terraform-aws-eks-blueprints//modules/kubernetes-addons?ref=v4.31.0"
+  source = "github.com/aws-ia/terraform-aws-eks-blueprints//modules/kubernetes-addons?ref=v4.32.1"
 
   eks_cluster_id       = var.eks_cluster_id
   eks_cluster_endpoint = var.eks_cluster_endpoint
@@ -54,8 +54,8 @@ module "eks_blueprints_kubernetes_addons" {
   enable_aws_efs_csi_driver            = local.enable_efs_driver
 
   # Add-ons
-  enable_metrics_server     = true
-  enable_kube_state_metrics = true
+  enable_metrics_server     = false
+  enable_kube_state_metrics = false
   metrics_server_helm_config = {
     values = [file("${local.helm_values_path}/metric-server.yaml")]
   }
